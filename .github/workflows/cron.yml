@@ -1,6 +1,9 @@
 name: Trigger WP Cron
 
 on:
+  push:
+    branches:
+      - master
   schedule:
     - cron: '*/5 * * * *'
 
