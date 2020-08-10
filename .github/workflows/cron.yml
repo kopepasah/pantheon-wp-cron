@@ -2,7 +2,7 @@ name: Trigger WP Cron
 
 on:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   run:
@@ -19,4 +19,4 @@ jobs:
         pantheon-machine-token: ${{ secrets.PANTHEON_MACHINE_TOKEN }}
     - name: Running Due Cron Events
       if: success()
-      run: terminus wp-cron.dev wp -- cron event run --due-now
+      run: terminus wp wp-cron.dev -- cron event run --due-now
