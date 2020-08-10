@@ -17,6 +17,6 @@ jobs:
       uses: kopepasah/setup-pantheon-terminus@master
       with:
         pantheon-machine-token: ${{ secrets.PANTHEON_MACHINE_TOKEN }}
-    - name: Listing Sites
+    - name: Running Due Cron Events
       if: success()
-      run: terminus site:list
+      run: terminus wp wp-cron.dev -- cron event run --due-now
