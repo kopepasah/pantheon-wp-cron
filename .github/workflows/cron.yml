@@ -1,0 +1,22 @@
+name: Trigger WP Cron
+
+on:
+  schedule:
+    cron: */30 * * * *
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Installing PHP
+      uses: shivammathur/setup-php@master
+      with:
+        php-version: '7.3'
+    - name: Installing Terminus
+      uses: kopepasah/setup-pantheon-terminus@master
+      with:
+        pantheon-machine-token: ${{ secrets.PANTHEON_MACHINE_TOKEN }}
+    - name: Running Due Cron Events
+      if: success()
+      run: terminus ${{ secrets.PANTHEON_SITE }}.dev wp -- cron event run --due-now
