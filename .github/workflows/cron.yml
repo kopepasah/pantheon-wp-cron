@@ -22,4 +22,4 @@ jobs:
         pantheon-machine-token: ${{ secrets.PANTHEON_MACHINE_TOKEN }}
     - name: Running Due Cron Events
       if: success()
-      run: terminus wp wp-cron.dev -- cron test
+      run: terminus wp wp-cron.dev -- user list
