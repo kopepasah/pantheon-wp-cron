@@ -5,7 +5,7 @@ on:
     - cron: '*/30 * * * *'
 
 jobs:
-  deploy:
+  run:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -19,4 +19,4 @@ jobs:
         pantheon-machine-token: ${{ secrets.PANTHEON_MACHINE_TOKEN }}
     - name: Running Due Cron Events
       if: success()
-      run: terminus ${{ secrets.PANTHEON_SITE }}.dev wp -- cron event run --due-now
+      run: terminus wp-cron.dev wp -- cron event run --due-now
